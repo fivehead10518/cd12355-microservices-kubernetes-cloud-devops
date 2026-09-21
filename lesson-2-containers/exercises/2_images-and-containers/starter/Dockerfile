@@ -1,4 +1,5 @@
-FROM python:3.10-slim-buster
+FROM python:3.10-slim-bookworm 
+#slim-buster is deprecated, so we use slim-bookworm instead
 
 # Install Postgres and configure a username + password
 USER root
@@ -7,6 +8,7 @@ ARG DB_USERNAME=$DB_USERNAME
 ARG DB_PASSWORD=$DB_PASSWORD
 
 RUN apt update -y && apt install postgresql postgresql-contrib -y
+# RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends postgresql postgresql-contrib
 
 USER postgres
 WORKDIR /db
